@@ -8,8 +8,9 @@ import ChatsScreen from "../screens/ChatsScreen";
 import StatusScreen from "../screens/StatusScreen";
 import CallsScreen from "../screens/CallsScreen";
 import Colors from "../constants/Colors";
+import { MainTabParamList } from "../types";
 
-const MainTab = createMaterialTopTabNavigator();
+const MainTab = createMaterialTopTabNavigator<MainTabParamList>();
 
 // Main Top Navigator
 export default function MainTabNavigator() {

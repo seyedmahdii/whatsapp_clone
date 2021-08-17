@@ -11,6 +11,7 @@ import {
 
 import Colors from "../constants/Colors";
 import MainTabNavigator from "./MainTabNavigator";
+import { RootStackParamList } from "../types";
 
 function Navigation() {
     return (
@@ -22,7 +23,7 @@ function Navigation() {
 
 export default Navigation;
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
 const RootNavigator = () => {
     return (
@@ -30,8 +31,8 @@ const RootNavigator = () => {
             screenOptions={{
                 headerStyle: {
                     backgroundColor: Colors.light.tint,
-                    elvation: 0,
-                    shadowOpacity: 0,
+                    shadowOpacity: 0, // IOS
+                    elevation: 0, // Android
                 },
                 headerTintColor: Colors.light.background,
                 headerTitleAlign: "left",
