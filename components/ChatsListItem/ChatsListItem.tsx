@@ -1,10 +1,21 @@
 import React from "react";
 import { View, Text, TouchableWithoutFeedback, Image } from "react-native";
 import styles from "./Styles";
+import { useNavigation } from "@react-navigation/native";
 
 const ChatsListItem = () => {
+    const navigation = useNavigation();
+
     return (
-        <TouchableWithoutFeedback onPress={() => alert("hello")}>
+        <TouchableWithoutFeedback
+            onPress={() =>
+                navigation.navigate("ChatRoom", {
+                    id: 1,
+                    name: "seyedjavaddd",
+                    imageUri: "http://seyedmahdijalali.ir/images/about.jpg",
+                })
+            }
+        >
             <View style={styles.chatListItem}>
                 <View>
                     <Image

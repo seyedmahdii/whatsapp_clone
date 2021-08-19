@@ -1,6 +1,7 @@
 import React from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 import ChatsListItem from "../components/ChatsListItem/ChatsListItem";
+import NewMessageButton from "../components/NewMessageButton/NewMessageButton";
 
 const ChatsScreen = () => {
     return (
@@ -9,6 +10,7 @@ const ChatsScreen = () => {
             <ChatsListItem />
             <ChatsListItem />
             <ChatsListItem />
+            <NewMessageButton />
         </View>
     );
 };

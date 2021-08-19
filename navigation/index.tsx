@@ -7,11 +7,14 @@ import {
     MaterialCommunityIcons,
     MaterialIcons,
     FontAwesome5,
+    AntDesign,
 } from "@expo/vector-icons";
 
 import Colors from "../constants/Colors";
 import MainTabNavigator from "./MainTabNavigator";
 import { RootStackParamList } from "../types";
+import ChatRoomScreen from "../screens/ChatRoomScreen";
+import { useNavigation } from "@react-navigation/native";
 
 function Navigation() {
     return (
@@ -26,6 +29,8 @@ export default Navigation;
 const Stack = createStackNavigator<RootStackParamList>();
 
 const RootNavigator = () => {
+    const navigation = useNavigation();
+
     return (
         <Stack.Navigator
             screenOptions={{
@@ -69,6 +74,74 @@ const RootNavigator = () => {
                         </View>
                     ),
                 }}
+            />
+            <Stack.Screen
+                name="ChatRoom"
+                component={ChatRoomScreen}
+                options={({ route }) => ({
+                    title: route.params.name,
+                    headerTitleStyle: {
+                        fontWeight: "normal",
+                        fontSize: 18,
+                    },
+                    headerLeft: () => {
+                        return (
+                            <View
+                                style={{
+                                    minWidth: 70,
+                                    marginLeft: 10,
+                                    flexDirection: "row",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                }}
+                            >
+                                <AntDesign
+                                    name="arrowleft"
+                                    size={28}
+                                    color="white"
+                                    style={{ marginRight: 5 }}
+                                    onPress={() => navigation.goBack()}
+                                />
+                                <Image
+                                    source={{ uri: route.params.imageUri }}
+                                    style={{
+                                        width: 40,
+                                        height: 40,
+                                        borderRadius: 40,
+                                    }}
+                                />
+                            </View>
+                        );
+                    },
+                    headerRight: () => {
+                        return (
+                            <View
+                                style={{
+                                    width: 100,
+                                    marginRight: 10,
+                                    flexDirection: "row",
+                                    justifyContent: "space-between",
+                                }}
+                            >
+                                <MaterialIcons
+                                    name="call"
+                                    size={24}
+                                    color="white"
+                                />
+                                <FontAwesome5
+                                    name="video"
+                                    size={24}
+                                    color="white"
+                                />
+                                <MaterialCommunityIcons
+                                    name="dots-vertical"
+                                    size={24}
+                                    color="white"
+                                />
+                            </View>
+                        );
+                    },
+                })}
             />
         </Stack.Navigator>
     );
