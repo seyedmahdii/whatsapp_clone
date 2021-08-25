@@ -3,8 +3,13 @@ import { StyleSheet, ImageBackground, FlatList } from "react-native";
 import BG from "../assets/images/BG.png";
 import ChatRoomMessage from "../components/ChatRoomMessage/ChatRoomMessage";
 import ChatRoomInput from "../components/ChatRoomInput/ChatRoomInput";
+import { useWhatsAppContext } from "../context";
+import { auth } from "../firebase";
 
 const ChatRoomScreen = () => {
+    const { loggedUser } = useWhatsAppContext();
+    console.log("loggedUser from chatRoom", loggedUser?.user?.email);
+
     return (
         <ImageBackground source={BG} style={styles.container}>
             {/* <FlatList

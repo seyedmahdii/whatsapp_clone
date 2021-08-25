@@ -6,14 +6,14 @@ export default {
         text: "#000",
         background: "#fff",
         tint: tintColorLight,
-        tabIconDefault: "#ccc",
+        secondaryButton: "#00cd40",
         tabIconSelected: tintColorLight,
     },
     dark: {
         text: "#fff",
         background: "#000",
         tint: tintColorDark,
-        tabIconDefault: "#ccc",
+        secondaryButton: "#00cd40",
         tabIconSelected: tintColorDark,
     },
 };

@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
-import { ColorSchemeName, View, Image } from "react-native";
+import { View, Image } from "react-native";
 import {
     Octicons,
     MaterialCommunityIcons,
@@ -14,7 +14,8 @@ import Colors from "../constants/Colors";
 import MainTabNavigator from "./MainTabNavigator";
 import { RootStackParamList } from "../types";
 import ChatRoomScreen from "../screens/ChatRoomScreen";
-import { useNavigation } from "@react-navigation/native";
+import AuthScreen from "../screens/Auth/AuthScreen";
+import { useWhatsAppContext } from "../context";
 
 function Navigation() {
     return (
@@ -29,7 +30,7 @@ export default Navigation;
 const Stack = createStackNavigator<RootStackParamList>();
 
 const RootNavigator = () => {
-    const navigation = useNavigation();
+    const { loggedUser } = useWhatsAppContext();
 
     return (
         <Stack.Navigator
@@ -45,12 +46,14 @@ const RootNavigator = () => {
                     fontWeight: "bold",
                 },
             }}
+            initialRouteName="Auth"
         >
             <Stack.Screen
-                name="Root"
+                name="Home"
                 component={MainTabNavigator}
                 options={{
-                    title: "WhatsApp",
+                    title: `WhatsApp | ${loggedUser?.user?.email}`,
+                    headerLeft: () => null,
                     headerRight: () => (
                         <View
                             style={{
@@ -142,6 +145,11 @@ const RootNavigator = () => {
                         );
                     },
                 })}
+            />
+            <Stack.Screen
+                name="Auth"
+                component={AuthScreen}
+                options={{ headerShown: false }}
             />
         </Stack.Navigator>
     );
