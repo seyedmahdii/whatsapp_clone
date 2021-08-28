@@ -3,7 +3,7 @@ import { View, Text, TouchableNativeFeedback, Image } from "react-native";
 import styles from "./Styles";
 import { useNavigation } from "@react-navigation/native";
 
-const ChatsListItem = () => {
+const Contact = () => {
     const navigation = useNavigation();
 
     return (
@@ -16,8 +16,8 @@ const ChatsListItem = () => {
                 })
             }
         >
-            <View style={styles.chatListItem}>
-                <View>
+            <View style={styles.contact}>
+                <View style={styles.avatarContainer}>
                     <Image
                         source={{
                             uri: "http://seyedmahdijalali.ir/images/about.jpg",
@@ -28,15 +28,9 @@ const ChatsListItem = () => {
                 <View style={styles.textContainer}>
                     <View style={styles.textRow}>
                         <Text style={styles.name}>Seyed mahdii</Text>
-                        <Text style={styles.createdAt}>
-                            {/* {moment(chatRoom.lastMessage.createdAt).format(
-                                "DD/MM/YYYY"
-                            )} */}
-                            20 Apr 2021
-                        </Text>
                     </View>
-                    <Text style={styles.lastMessage} numberOfLines={1}>
-                        heloo. this is the last message!!
+                    <Text style={styles.bio} numberOfLines={1}>
+                        this supposed to be the user's bio!!
                     </Text>
                 </View>
             </View>
@@ -44,4 +38,4 @@ const ChatsListItem = () => {
     );
 };
 
-export default ChatsListItem;
+export default Contact;

@@ -16,6 +16,8 @@ import { RootStackParamList } from "../types";
 import ChatRoomScreen from "../screens/ChatRoomScreen";
 import AuthScreen from "../screens/Auth/AuthScreen";
 import { useWhatsAppContext } from "../context";
+import Contacts from "../screens/Contacts/ContactsScreen";
+import NewContactScreen from "../screens/NewContact/NewContactScreen";
 
 function Navigation() {
     return (
@@ -150,6 +152,42 @@ const RootNavigator = () => {
                 name="Auth"
                 component={AuthScreen}
                 options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Contacts"
+                component={Contacts}
+                options={{
+                    title: "Select contact",
+                    headerRight: () => (
+                        <View
+                            style={{
+                                flexDirection: "row",
+                                width: 60,
+                                alignItems: "center",
+                                justifyContent: "space-between",
+                                marginRight: 10,
+                            }}
+                        >
+                            <Octicons
+                                name="search"
+                                size={24}
+                                color={Colors.light.background}
+                            />
+                            <MaterialCommunityIcons
+                                name="dots-vertical"
+                                color={Colors.light.background}
+                                size={24}
+                            />
+                        </View>
+                    ),
+                }}
+            />
+            <Stack.Screen
+                name="NewContact"
+                component={NewContactScreen}
+                options={{
+                    title: "New contact",
+                }}
             />
         </Stack.Navigator>
     );

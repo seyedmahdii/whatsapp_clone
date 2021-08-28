@@ -10,17 +10,25 @@ import { useWhatsAppContext } from "../../context";
 
 const AuthScreen = ({}) => {
     const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
     const navigation = useNavigation();
     const { setLoggedUser } = useWhatsAppContext();
-
+    console.log(typeof phone);
     const register = () => {
         auth.createUserWithEmailAndPassword(email, password)
-            .then((authUser: {}) => {
+            .then((authUser: { user: {} }) => {
+                authUser.user.updateProfile({
+                    displayName: name,
+                    phoneNumber: phone,
+                    photoURL:
+                        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png",
+                });
                 setLoggedUser(authUser);
                 navigation.navigate("Home");
             })
-            .catch((error: {}) => {
+            .catch((error: { message: "" }) => {
                 alert(error?.message);
                 console.log("REGISTER ERROR ", error);
             });
@@ -54,6 +62,19 @@ const AuthScreen = ({}) => {
                         number.
                     </Text>
                     <View style={styles.inputsContainer}>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Full Name"
+                            value={name}
+                            onChangeText={(text) => setName(text)}
+                        />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Phone"
+                            keyboardType="numeric"
+                            value={phone}
+                            onChangeText={(text) => setPhone(text)}
+                        />
                         <TextInput
                             style={styles.input}
                             placeholder="Email"

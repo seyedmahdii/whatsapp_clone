@@ -8,7 +8,7 @@ import { auth } from "../firebase";
 
 const ChatRoomScreen = () => {
     const { loggedUser } = useWhatsAppContext();
-    console.log("loggedUser from chatRoom", loggedUser?.user?.email);
+    // console.log("loggedUser from chatRoom", loggedUser?.user);
 
     return (
         <ImageBackground source={BG} style={styles.container}>
